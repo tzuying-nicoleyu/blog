@@ -1,0 +1,13 @@
+---
+title: New post
+author: Tzuying Yu
+date: '2021-05-30'
+slug: new-post
+categories:
+  - blog
+tags:
+  - R Markdown
+---
+Today's blogdown notes:
+
+![sugar beach](images/IMG_0885.JPG)

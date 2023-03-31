@@ -1,0 +1,37 @@
+"0","blogdown::new_site()
+"
+"2","― Creating your new site
+"
+"0","y"
+"2","| Installing the theme yihui/hugo-lithium from github.com
+"
+"2","trying URL 'https://github.com/yihui/hugo-lithium/archive/master.tar.gz'
+"
+"2","downloaded 109 KB
+
+"
+"2","| Adding the sample post to content/post/2020-12-01-r-rmarkdown/index.Rmd
+"
+"2","| Converting all metadata to the YAML format
+"
+"2","| Adding netlify.toml in case you want to deploy the site to Netlify
+"
+"2","| Adding .Rprofile to set options() for blogdown
+"
+"2","― The new site is ready
+"
+"2","○ To start a local preview: use blogdown::serve_site(), or the RStudio add-in ""Serve Site""
+"
+"2","○ To stop a local preview: use blogdown::stop_server(), or restart your R session
+"
+"0","y"
+"2","Launching the server via the command:
+  hugo server --bind 127.0.0.1 -p 4321 --themesDir themes -t hugo-lithium -D -F --navigateToChanged
+"
+"2","Serving the directory . at http://localhost:4321
+"
+"2","Launched the hugo server in the background (process ID: 27614). To stop it, call blogdown::stop_server() or restart the R session.
+"
+"2","Rendering content/post/2020-12-01-r-rmarkdown/index.Rmd... "
+"2","Done.
+"

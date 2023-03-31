@@ -1,0 +1,44 @@
+---
+title: "Untitled"
+author: "Tzuying Yu,"
+date: "20/05/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(gt)
+```
+
+```{r}
+ipad_index <- tibble(country = c("US", "China", "Canada", "UK", "Japan"),
+       local_currency = c(329.99, 3499, 429, 319.97, 34800),
+       current_exchange_rate = c(1, 0.16, 0.82, 1.41, 0.009))
+ipad_index <- ipad_index %>%
+  mutate(us_dollars = local_currency * current_exchange_rate) %>% 
+  mutate(implied_ppp = 329.99/us_dollars) %>% 
+  mutate(over_under_value = (current_exchange_rate - implied_ppp)/implied_ppp) 
+
+row_order <- c("country", "local_currency", "us_dollars", "implied_ppp", "current_exchange_rate", "over_under_value")
+ipad_index <- ipad_index[,row_order]
+
+
+```
+
+
+
+```{r}
+pretty_ipad_index <- gt(data = ipad_index) %>% 
+  tab_header(title = "iPad(8th generation) 32GB Index") %>% 
+  tab_spanner(label = "iPad prices", columns = c("local_currency", "us_dollars")) %>%
+  tab_footnote( footnote = "us_dollars is calculated by local_currency multiple by current_exchange_rate",
+                locations = cells_column_labels(columns = "us_dollars")) %>% 
+  tab_footnote( footnote = "implied_ppp is calculated by 329.99 divided by us_dollars",
+                locations = cells_column_labels(columns = "implied_ppp")) %>% 
+  tab_footnote( footnote = "over_under_value is calculated by (current_exchange rate - implied_ppp)/implied_ppp",
+                locations = cells_column_labels(columns = "over_under_value"))
+pretty_ipad_index
+gtsave(pretty_ipad_index, filename = "ipad_index_eco365_ps1.png")
+```
+

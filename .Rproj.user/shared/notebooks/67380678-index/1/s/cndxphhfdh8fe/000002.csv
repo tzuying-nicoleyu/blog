@@ -1,0 +1,7 @@
+"0","par(mar = c(0, 1, 0, 1))"
+"0","pie("
+"0","  c(280, 60, 20),"
+"0","  c('Sky', 'Sunny side of pyramid', 'Shady side of pyramid'),"
+"0","  col = c('#0292D8', '#F7EA39', '#C4B632'),"
+"0","  init.angle = -50, border = NA"
+"0",")"
