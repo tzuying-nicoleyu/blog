@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Github on A Hugo website</title>
+    <link>/categories/github/</link>
+    <description>Recent content in Github on A Hugo website</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 01 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="/categories/github/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Your first git command</title>
+      <link>/2022/05/01/your-first-git-command/</link>
+      <pubDate>Sun, 01 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/2022/05/01/your-first-git-command/</guid>
+      <description>You only need to know these basic Git commands to push the local project to Github! Preamble This is a note that I wrote back when I tried to push my blogdown project in Rstudio to Github. I didn’t have any experience in writing Git commands then. Therefore, this note is more for beginners who might feel stuck while first pushing local repository to Github’s remote repository.
+ Workflow In this setting, I wished to push my blogdown project.</description>
+    </item>
+    
+  </channel>
+</rss>

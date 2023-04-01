@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.75.1" />
+
+
+<title>Untitled - A Hugo website</title>
+<meta property="og:title" content="Untitled - A Hugo website">
+
+
+  <link href='/favicon.ico' rel='icon' type='image/x-icon'/>
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.png"
+         width="50"
+         height="50"
+         alt="Logo">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="www.linkedin.com/in/tzu-ying-yu-nicole0817/">LinkedIn</a></li>
+    
+    <li><a href="https://github.com/tzuying-nicoleyu">My GitHub</a></li>
+    
+    <li><a href="/about/">Resume</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">4 min read</span>
+    
+
+    <h1 class="article-title">Untitled</h1>
+
+    
+    <span class="article-date">0001-01-01</span>
+    
+
+    <div class="article-content">
+      
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<pre class="r"><code>ipad_index &lt;- tibble(country = c(&quot;US&quot;, &quot;China&quot;, &quot;Canada&quot;, &quot;UK&quot;, &quot;Japan&quot;),
+       local_currency = c(329.99, 3499, 429, 319.97, 34800),
+       current_exchange_rate = c(1, 0.16, 0.82, 1.41, 0.009))
+ipad_index &lt;- ipad_index %&gt;%
+  mutate(us_dollars = local_currency * current_exchange_rate) %&gt;% 
+  mutate(implied_ppp = 329.99/us_dollars) %&gt;% 
+  mutate(over_under_value = (current_exchange_rate - implied_ppp)/implied_ppp) 
+
+row_order &lt;- c(&quot;country&quot;, &quot;local_currency&quot;, &quot;us_dollars&quot;, &quot;implied_ppp&quot;, &quot;current_exchange_rate&quot;, &quot;over_under_value&quot;)
+ipad_index &lt;- ipad_index[,row_order]</code></pre>
+<pre class="r"><code>pretty_ipad_index &lt;- gt(data = ipad_index) %&gt;% 
+  tab_header(title = &quot;iPad(8th generation) 32GB Index&quot;) %&gt;% 
+  tab_spanner(label = &quot;iPad prices&quot;, columns = c(&quot;local_currency&quot;, &quot;us_dollars&quot;)) %&gt;%
+  tab_footnote( footnote = &quot;us_dollars is calculated by local_currency multiple by current_exchange_rate&quot;,
+                locations = cells_column_labels(columns = &quot;us_dollars&quot;)) %&gt;% 
+  tab_footnote( footnote = &quot;implied_ppp is calculated by 329.99 divided by us_dollars&quot;,
+                locations = cells_column_labels(columns = &quot;implied_ppp&quot;)) %&gt;% 
+  tab_footnote( footnote = &quot;over_under_value is calculated by (current_exchange rate - implied_ppp)/implied_ppp&quot;,
+                locations = cells_column_labels(columns = &quot;over_under_value&quot;))
+pretty_ipad_index</code></pre>
+<div id="psoqiwfkpy" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#psoqiwfkpy .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#psoqiwfkpy .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#psoqiwfkpy .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#psoqiwfkpy .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#psoqiwfkpy .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#psoqiwfkpy .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#psoqiwfkpy .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#psoqiwfkpy .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#psoqiwfkpy .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#psoqiwfkpy .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#psoqiwfkpy .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#psoqiwfkpy .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#psoqiwfkpy .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#psoqiwfkpy .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#psoqiwfkpy .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#psoqiwfkpy .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#psoqiwfkpy .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#psoqiwfkpy .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#psoqiwfkpy .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#psoqiwfkpy .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#psoqiwfkpy .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#psoqiwfkpy .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#psoqiwfkpy .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#psoqiwfkpy .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#psoqiwfkpy .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#psoqiwfkpy .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#psoqiwfkpy .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#psoqiwfkpy .gt_left {
+  text-align: left;
+}
+
+#psoqiwfkpy .gt_center {
+  text-align: center;
+}
+
+#psoqiwfkpy .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#psoqiwfkpy .gt_font_normal {
+  font-weight: normal;
+}
+
+#psoqiwfkpy .gt_font_bold {
+  font-weight: bold;
+}
+
+#psoqiwfkpy .gt_font_italic {
+  font-style: italic;
+}
+
+#psoqiwfkpy .gt_super {
+  font-size: 65%;
+}
+
+#psoqiwfkpy .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 65%;
+}
+</style>
+<table class="gt_table">
+  <thead class="gt_header">
+    <tr>
+      <th colspan="6" class="gt_heading gt_title gt_font_normal gt_bottom_border" style>iPad(8th generation) 32GB Index</th>
+    </tr>
+    
+  </thead>
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1">country</th>
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="2">
+        <span class="gt_column_spanner">iPad prices</span>
+      </th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="2" colspan="1">implied_ppp<sup class="gt_footnote_marks">2</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="2" colspan="1">current_exchange_rate</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="2" colspan="1">over_under_value<sup class="gt_footnote_marks">3</sup></th>
+    </tr>
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">local_currency</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">us_dollars<sup class="gt_footnote_marks">1</sup></th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_left">US</td>
+<td class="gt_row gt_right">329.99</td>
+<td class="gt_row gt_right">329.9900</td>
+<td class="gt_row gt_right">1.0000000</td>
+<td class="gt_row gt_right">1.000</td>
+<td class="gt_row gt_right">0.0000000</td></tr>
+    <tr><td class="gt_row gt_left">China</td>
+<td class="gt_row gt_right">3499.00</td>
+<td class="gt_row gt_right">559.8400</td>
+<td class="gt_row gt_right">0.5894363</td>
+<td class="gt_row gt_right">0.160</td>
+<td class="gt_row gt_right">-0.7285542</td></tr>
+    <tr><td class="gt_row gt_left">Canada</td>
+<td class="gt_row gt_right">429.00</td>
+<td class="gt_row gt_right">351.7800</td>
+<td class="gt_row gt_right">0.9380579</td>
+<td class="gt_row gt_right">0.820</td>
+<td class="gt_row gt_right">-0.1258535</td></tr>
+    <tr><td class="gt_row gt_left">UK</td>
+<td class="gt_row gt_right">319.97</td>
+<td class="gt_row gt_right">451.1577</td>
+<td class="gt_row gt_right">0.7314294</td>
+<td class="gt_row gt_right">1.410</td>
+<td class="gt_row gt_right">0.9277322</td></tr>
+    <tr><td class="gt_row gt_left">Japan</td>
+<td class="gt_row gt_right">34800.00</td>
+<td class="gt_row gt_right">313.2000</td>
+<td class="gt_row gt_right">1.0536079</td>
+<td class="gt_row gt_right">0.009</td>
+<td class="gt_row gt_right">-0.9914579</td></tr>
+  </tbody>
+  
+  <tfoot>
+    <tr class="gt_footnotes">
+      <td colspan="6">
+        <p class="gt_footnote">
+          <sup class="gt_footnote_marks">
+            <em>1</em>
+          </sup>
+           
+          us_dollars is calculated by local_currency multiple by current_exchange_rate
+          <br />
+        </p>
+        <p class="gt_footnote">
+          <sup class="gt_footnote_marks">
+            <em>2</em>
+          </sup>
+           
+          implied_ppp is calculated by 329.99 divided by us_dollars
+          <br />
+        </p>
+        <p class="gt_footnote">
+          <sup class="gt_footnote_marks">
+            <em>3</em>
+          </sup>
+           
+          over_under_value is calculated by (current_exchange rate - implied_ppp)/implied_ppp
+          <br />
+        </p>
+      </td>
+    </tr>
+  </tfoot>
+</table>
+</div>
+<pre class="r"><code>gtsave(pretty_ipad_index, filename = &quot;ipad_index_eco365_ps1.png&quot;)</code></pre>
+<p><img src="/post/2021-10-11-eco365/Untitled_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+
+    </div>
+  </article>
+
+  
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="/index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://gohugo.io/" class="footer-links-kudos">Made with <img src="/images/hugo-logo.png" alt="Img link to Hugo website" width="22" height="22"></a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/r.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+
+    
+  </body>
+</html>
+
