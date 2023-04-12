@@ -1,0 +1,56 @@
+---
+title: Docker command
+author: Tzuying Yu
+date: '2023-04-06'
+tags:
+  - Azure Data Studio
+  - Docker
+slug: docker-command
+---
+
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<div id="docker-cp" class="section level2">
+<h2>docker cp</h2>
+<p>Notes: This is the note about how to use command line to restore .bak file in your local computer to docker.</p>
+<div id="example-of-docker-cp" class="section level3">
+<h3>Example of <em>docker cp</em></h3>
+<p>First, the example of the command to copying file should look like the following,</p>
+<pre class="bash"><code>#example 
+docker cp /Users/nicoleyu/Desktop/mysql/SampleDatabase.bak SqlServer_first:/var/backups</code></pre>
+</div>
+<div id="general-form" class="section level3">
+<h3>General Form</h3>
+<p>And when you search for <em>docker cp</em>, you will find the bellow command from the official document.</p>
+<pre class="bash"><code>docker cp [OPTIONS] CONTAINER:SRC_PATH DEST_PATH|-
+docker cp [OPTIONS] SRC_PATH|- CONTAINER:DEST_PATH
+# where cp means copying file between container and local filesystem</code></pre>
+<div id="explain" class="section level4">
+<h4>Explain</h4>
+<ol style="list-style-type: decimal">
+<li><p>SRC_PATH: This is the path of your .bak file was stored on your local computer. In my example, the file was stored inside my Desktop &gt; mysql folder.</p></li>
+<li><p>CONTAINER: It is the name of your docker’s container which you wish to run with your current database. You can find the name in either the Container page on your docker dashboard (See Figure 1) or running the following command line in your computer terminal. So in my example, my container’s name is SqlServer_first.</p></li>
+</ol>
+<div class="figure">
+<img src="docker_container.png" alt="" />
+<p class="caption">Figure 1: Docker’s Conatainer page &gt; green one is the container that is currently running</p>
+</div>
+<pre class="bash"><code>docker ps 
+# This command shows the container that is currently running </code></pre>
+<pre><code>## CONTAINER ID   IMAGE                                        COMMAND                  CREATED       STATUS      PORTS                    NAMES
+## 7ea7adfa19d4   mcr.microsoft.com/mssql/server:2022-latest   &quot;/opt/mssql/bin/perm…&quot;   2 weeks ago   Up 5 days   0.0.0.0:1433-&gt;1433/tcp   SqlServer_first</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>DEST_PATH: It is the path of your destination of the file you are copying from your local computer to the docker. You have to options to find the your DEST_PATH. First, go to the docker’s container page, and click the three dot beside the current running container, then click <em>view file</em>. You will see the filesystem in your container, and choose one folder. Copy the file path. Second option in go to the AZure studio, connection page(left panel)&gt;Home&gt;Restore&gt; Restore from backup file &gt; Backup file path then click the three dot on the right. You will see the filesystem in your container, choose one. Then copy the selected path. In my exmaple, the <em>DEST_PATH is /var/backups</em>.</li>
+</ol>
+</div>
+</div>
+<div id="result" class="section level3">
+<h3>Result</h3>
+<p>After running the docker cp, you will find the your bak.file under the database folder on the Azure studio.</p>
+<p><br />
+<br />
+<br />
+</p>
+</div>
+</div>

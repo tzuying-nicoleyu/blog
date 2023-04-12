@@ -7,6 +7,7 @@ title: Resume
 
 #### Contact information:
 
+![Profile Photo](resume_photo.png)
 
 - <font size='1'>Phone number: (647)871-7810</font>
 - <font size='1'>Email: tzuying.yu\@outlook.com</font>

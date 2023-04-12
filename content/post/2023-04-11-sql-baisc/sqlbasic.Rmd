@@ -1,15 +1,12 @@
 ---
-title: "SQL Basic"
-author: "Tzuying Yu"
-date: '2023-04-12'
-output: html_document
-fig_caption: TRUE
+title: SQL Baisc
+author: Tzuying Yu
+date: '2023-04-11'
+slug: sql-baisc
+categories: []
+tags:
+  - SQL
 ---
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
 
 ### Some vocabulary:
 
