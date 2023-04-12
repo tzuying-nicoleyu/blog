@@ -37,7 +37,9 @@ docker cp [OPTIONS] SRC_PATH|- CONTAINER:DEST_PATH
 
 2.  CONTAINER: It is the name of your docker's container which you wish to run with your current database. You can find the name in either the Container page on your docker dashboard (See Figure 1) or running the following command line in your computer terminal. So in my example, my container's name is SqlServer_first.
 
-![Figure 1: Docker's Conatainer page \> green one is the container that is currently running](docker_container.png)
+![docker](docker_container.png){width=80%} 
+
+
 
 ```{bash}
 docker ps 

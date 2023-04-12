@@ -5,9 +5,10 @@ title: Resume
 
 # Tzuying Yu (Nicole)
 
-#### Contact information:
+### Contact information:
 
-![Profile Photo](resume_photo.png)
+<img src="/./about_files/resume_photo.png" alt="profile phot" width="200px"/>  
+
 
 - <font size='1'>Phone number: (647)871-7810</font>
 - <font size='1'>Email: tzuying.yu\@outlook.com</font>
@@ -15,7 +16,7 @@ title: Resume
 
 ## Hightlight Qualifications
 
-- Proficient level in **R**, **Python**, and **MS Excel** programming skills shown by successful competing in case competition and participating in machine learning student research project.
+- Proficient level in **R**, **Python**, and **SQL** programming skills shown by successful competing in case competition and participating in machine learning student research project.
 - Strong communication and interpersonal skills shown by creating harmonious atmosphere between the local community and school faculties when volunteering in community action group.
 - Experience of partnering with non-for-organization as a research volunteer in University of Toronto community action group.
 - Strong teamwork demonstrated by being a Sponsorship Associate Officer responsible for developing and maintaining the relationships with new and existing sponsors.\
