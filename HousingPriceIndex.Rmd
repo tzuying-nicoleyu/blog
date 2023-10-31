@@ -1,0 +1,126 @@
+---
+title: "HousingReport"
+author: "Tzuying Yu"
+date: '2023-04-27'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## About the data 
+
+Because the data is ordered in a time fashion, the obvious correlation introduced by the sampling of adjacent points in time can severely restrict the applicability of the many conventional statistical methods traditionally dependent on the assumption that these adjacent observations are independent and identically distributed. 
+
+(time correlation)
+
+```{r}
+# Import data 
+HPI <- read.csv("content/post/2023-04-27/Results2.csv")
+#View(HPI)
+#str(HPI)
+
+# Turn into Three columns (Total, House, Land) using pivot_wider
+library(dplyr)
+library(tidyr)
+HPI <- HPI %>% 
+  pivot_wider(names_from = "New_housing_price_indexes" , values_from = "VALUE") 
+HPI <- HPI %>% rename(Total = colnames(HPI)[2],
+           House = colnames(HPI)[3], 
+           Land =colnames(HPI)[4])
+
+```
+
+
+
+```{r}
+# At this point, the dataframe is still not a time series dataframe
+ts_HPI <- ts(HPI[,2:4], start = c(2013, 1),frequency = 12)
+
+plot.ts(ts_HPI, 
+        plot.type = "single", 
+        col = 2:4, 
+        ylab = "House Price Index",
+        main = "House Price Index in Canada from 2013 Jan to 2023 April ")
+grid()
+legend("bottomright",                          
+       c("Total", "House", "Land"),
+       lty = 1,
+       col = 2:4)
+
+```
+
+
+
+```{r}
+# Explore the linear trend (Classical Regression in Time Series)
+
+Total <- ts_HPI[, 1]
+fit <- lm(Total~time(Total), na.action=NULL)
+summary(fit)
+
+plot(Total)
+abline(fit)
+summary(aov(fit))
+num = length(Total)
+AIC(fit)/num - log(2*pi) # AIC
+BIC(fit)/num - log(2*pi) # BIC
+```
+
+
+## Recap:
+### Lineaer Regression
+```{r}
+#Assume the "True Relationship" is Y = 2 + 3X + e, the true relationship is probably not linear, there may be other variables that cause variation in Y. In addition, we typically assume that the error term is independent of X.
+set.seed(100)
+x0 <- runif(100, -2, 2)
+e <- rnorm(100, mean = 0, sd = 3) # The error
+Y <-(2 + 3* x0)+e # Y
+
+par(mfrow = c(1, 2))
+# The graph:
+plot(x0, Y)
+abline(2, 3, col = 'red')
+abline(lm(Y~x0), col = "blue")
+
+# Running other 10 linear lines, each sample has 100 random x 
+ran_x = array( dim = c(10, 100))
+for(i in 1:10){
+  for(x in 1:100){
+  ran_x[i, x] =  runif(1, -2, 2)
+  }
+}
+
+ran_e = array( dim = c(10, 100))
+for(i in 1:10){
+  for(x in 1:100){
+  ran_e[i, x] =  rnorm(1, mean = 0, sd = 3)
+  }
+}
+
+ran_y =(2 + 3*ran_x )+ ran_e
+
+# The graph 
+plot(x0, Y, type = "n")
+abline(2, 3, col = 'red', lwd = 2)
+abline(lm(Y~x0), col = "blue", lwd = 2)
+for (i in 1:10){
+abline(lm(ran_y[i,] ~ ran_x[i, ]), col = "light blue", lwd = 0.4)
+}
+
+
+
+```
+
+
+## Some Project Idea:
+
+House Price Index is a data with time trend. So it's more like a time series analysis, with forecasting model.
+
+
+
+
+
+
