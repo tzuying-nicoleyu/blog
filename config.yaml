@@ -1,6 +1,6 @@
 baseurl: /
 languageCode: en-us
-title: A Hugo website
+title: Tzuying Yu's website
 theme: hugo-lithium
 googleAnalytics: ''
 disqusShortname: ''
@@ -19,7 +19,7 @@ menu:
     - name: GitHub
       url: https://github.com/tzuying-nicoleyu
     - name: LinkedIn
-      url: www.linkedin.com/in/tzu-ying-yu-nicole0817/
+      url: https://www.linkedin.com/in/tzu-ying-yu-nicole0817/
 params:
   MathJaxCDN: //cdnjs.cloudflare.com/ajax/libs
   MathJaxVersion: 2.7.5

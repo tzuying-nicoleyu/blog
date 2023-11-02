@@ -6,7 +6,38 @@
     <description>Recent content in Posts on A Hugo website</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 01 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 02 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Regression (simple and multiple)</title>
+      <link>/2023/11/02/test/</link>
+      <pubDate>Thu, 02 Nov 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/2023/11/02/test/</guid>
+      <description>The data library(MASS) library(ISLR2) ## ## Attaching package: &amp;#39;ISLR2&amp;#39; ## The following object is masked from &amp;#39;package:MASS&amp;#39;: ## ## Boston head(Boston) ## crim zn indus chas nox rm age dis rad tax ptratio lstat medv ## 1 0.00632 18 2.31 0 0.538 6.575 65.2 4.0900 1 296 15.3 4.98 24.0 ## 2 0.02731 0 7.07 0 0.469 6.421 78.9 4.9671 2 242 17.8 9.14 21.6 ## 3 0.02729 0 7.</description>
+    </item>
+    
+    <item>
+      <title>SQL Baisc</title>
+      <link>/2023/04/11/sql-baisc/</link>
+      <pubDate>Tue, 11 Apr 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/2023/04/11/sql-baisc/</guid>
+      <description>Some vocabulary:  Normalization: It’s the process of maintaining as less data as possible in a database. Benefit of doing so include saving space and easy tracking data. Columns are called fields Rows are called records Primary Keys: They are the minimum numbers of columns to uniquely identify a row.   Example Database Diagram Database Name: KCC Four table Name: dbo.Orders, dbo.Customers, dbo.Order_Product, dbo.Product
+Figure 1: Example Database diagram</description>
+    </item>
+    
+    <item>
+      <title>Docker command</title>
+      <link>/2023/04/06/docker-command/</link>
+      <pubDate>Thu, 06 Apr 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/2023/04/06/docker-command/</guid>
+      <description>docker cp Notes: This is the note about how to use command line to restore .bak file in your local computer to docker.
+Example of docker cp First, the example of the command to copying file should look like the following,
+#example docker cp /Users/nicoleyu/Desktop/mysql/SampleDatabase.bak SqlServer_first:/var/backups  General Form And when you search for docker cp, you will find the bellow command from the official document.
+docker cp [OPTIONS] CONTAINER:SRC_PATH DEST_PATH|- docker cp [OPTIONS] SRC_PATH|- CONTAINER:DEST_PATH # where cp means copying file between container and local filesystem Explain SRC_PATH: This is the path of your .</description>
+    </item>
+    
     <item>
       <title>Your first git command</title>
       <link>/2022/05/01/your-first-git-command/</link>
@@ -15,15 +46,6 @@
       <guid>/2022/05/01/your-first-git-command/</guid>
       <description>You only need to know these basic Git commands to push the local project to Github! Preamble This is a note that I wrote back when I tried to push my blogdown project in Rstudio to Github. I didn’t have any experience in writing Git commands then. Therefore, this note is more for beginners who might feel stuck while first pushing local repository to Github’s remote repository.
  Workflow In this setting, I wished to push my blogdown project.</description>
-    </item>
-    
-    <item>
-      <title>Untitled</title>
-      <link>/1/01/01/untitled/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/1/01/01/untitled/</guid>
-      <description>ipad_index &amp;lt;- tibble(country = c(&amp;quot;US&amp;quot;, &amp;quot;China&amp;quot;, &amp;quot;Canada&amp;quot;, &amp;quot;UK&amp;quot;, &amp;quot;Japan&amp;quot;), local_currency = c(329.99, 3499, 429, 319.97, 34800), current_exchange_rate = c(1, 0.16, 0.82, 1.41, 0.009)) ipad_index &amp;lt;- ipad_index %&amp;gt;% mutate(us_dollars = local_currency * current_exchange_rate) %&amp;gt;% mutate(implied_ppp = 329.99/us_dollars) %&amp;gt;% mutate(over_under_value = (current_exchange_rate - implied_ppp)/implied_ppp) row_order &amp;lt;- c(&amp;quot;country&amp;quot;, &amp;quot;local_currency&amp;quot;, &amp;quot;us_dollars&amp;quot;, &amp;quot;implied_ppp&amp;quot;, &amp;quot;current_exchange_rate&amp;quot;, &amp;quot;over_under_value&amp;quot;) ipad_index &amp;lt;- ipad_index[,row_order] pretty_ipad_index &amp;lt;- gt(data = ipad_index) %&amp;gt;% tab_header(title = &amp;quot;iPad(8th generation) 32GB Index&amp;quot;) %&amp;gt;% tab_spanner(label = &amp;quot;iPad prices&amp;quot;, columns = c(&amp;quot;local_currency&amp;quot;, &amp;quot;us_dollars&amp;quot;)) %&amp;gt;% tab_footnote( footnote = &amp;quot;us_dollars is calculated by local_currency multiple by current_exchange_rate&amp;quot;, locations = cells_column_labels(columns = &amp;quot;us_dollars&amp;quot;)) %&amp;gt;% tab_footnote( footnote = &amp;quot;implied_ppp is calculated by 329.</description>
     </item>
     
   </channel>

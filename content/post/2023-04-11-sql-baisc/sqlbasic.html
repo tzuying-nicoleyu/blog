@@ -2,10 +2,11 @@
 title: SQL Baisc
 author: Tzuying Yu
 date: '2023-04-11'
-slug: sql-baisc
-categories: []
+categories:
+  - SQL
 tags:
   - SQL
+slug: sql-baisc
 ---
 
 <script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
@@ -14,8 +15,7 @@ tags:
 <div id="some-vocabulary" class="section level3">
 <h3>Some vocabulary:</h3>
 <ul>
-<li>Normalization:
-It’s the process of maintaining as less data as possible in a database. Benefit of doing so include saving space and easy tracking data.</li>
+<li>Normalization: It’s the process of maintaining as less data as possible in a database. Benefit of doing so include saving space and easy tracking data.</li>
 <li>Columns are called fields</li>
 <li>Rows are called records</li>
 <li>Primary Keys: They are the minimum numbers of columns to uniquely identify a row.</li>
@@ -87,11 +87,11 @@ Inner Join  KCC.dbo.Customers c  on o.CustomerID = c.CustomerID</code></pre>
 <div id="order-by" class="section level3">
 <h3>Order by</h3>
 <p>It is when you want to return a table with sorted values with your targeted columns.</p>
-<pre><code>SELECT OrderID, OrderDate, OrderTotal, CustomerName, Phone 
+<pre class="sql"><code>SELECT OrderID, OrderDate, OrderTotal, CustomerName, Phone 
 From dbo.Orders o
 Right outer Join dbo.Customers c on o.CustomerID = c.CustomerID
 Order by  OrderTotal desc
--- where desc is descending </code></pre>
+## where desc is descending </code></pre>
 </div>
 <div id="functions" class="section level3">
 <h3>Functions</h3>
@@ -108,14 +108,8 @@ select * from dbo.Orders group by CustomerID</code></pre>
 <div id="reference" class="section level5">
 <h5>Reference</h5>
 <ol style="list-style-type: decimal">
-<li><p>The Youtube video I reference on
-<a href="https://www.youtube.com/watch?v=h0nxCDiD-zg">SQL for Beginner by Kevin Stratvert</a></p></li>
-<li><p>The database KCC I used in the example
-<a href="https://onedrive.live.com/?authkey=%21AGGtzPTtFEqtVoU&amp;id=B09F9559F6A16B6C%2177197&amp;cid=B09F9559F6A16B6C&amp;parId=root&amp;parQt=sharedby&amp;parCid=B5D0CE9C428470B4&amp;o=OneUp">KCC database download link to follow along</a></p></li>
+<li><p>The Youtube video I reference on <a href="https://www.youtube.com/watch?v=h0nxCDiD-zg">SQL for Beginner by Kevin Stratvert</a></p></li>
+<li><p>The database KCC I used in the example <a href="https://onedrive.live.com/?authkey=%21AGGtzPTtFEqtVoU&amp;id=B09F9559F6A16B6C%2177197&amp;cid=B09F9559F6A16B6C&amp;parId=root&amp;parQt=sharedby&amp;parCid=B5D0CE9C428470B4&amp;o=OneUp">KCC database download link to follow along</a></p></li>
 </ol>
-<p><br />
-<br />
-<br />
-</p>
 </div>
 </div>

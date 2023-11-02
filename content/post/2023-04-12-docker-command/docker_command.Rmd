@@ -2,6 +2,8 @@
 title: Docker command
 author: Tzuying Yu
 date: '2023-04-06'
+categories:
+  - SQL
 tags:
   - Azure Data Studio
   - Docker

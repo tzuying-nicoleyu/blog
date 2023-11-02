@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SQL on A Hugo website</title>
+    <link>/tags/sql/</link>
+    <description>Recent content in SQL on A Hugo website</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 11 Apr 2023 00:00:00 +0000</lastBuildDate><atom:link href="/tags/sql/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SQL Baisc</title>
+      <link>/2023/04/11/sql-baisc/</link>
+      <pubDate>Tue, 11 Apr 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/2023/04/11/sql-baisc/</guid>
+      <description>Some vocabulary:  Normalization: It’s the process of maintaining as less data as possible in a database. Benefit of doing so include saving space and easy tracking data. Columns are called fields Rows are called records Primary Keys: They are the minimum numbers of columns to uniquely identify a row.   Example Database Diagram Database Name: KCC Four table Name: dbo.Orders, dbo.Customers, dbo.Order_Product, dbo.Product
+Figure 1: Example Database diagram</description>
+    </item>
+    
+  </channel>
+</rss>

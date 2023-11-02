@@ -1,0 +1,206 @@
+---
+title: Regression (simple and multiple)
+author: Tzuying Yu
+date: '2023-11-02'
+categories:
+  - statistics
+slug: test
+---
+
+<script src="{{< blogdown/postref >}}index_files/header-attrs/header-attrs.js"></script>
+
+
+<div id="the-data" class="section level2">
+<h2>The data</h2>
+<pre class="r"><code>library(MASS)
+library(ISLR2)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;ISLR2&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:MASS&#39;:
+## 
+##     Boston</code></pre>
+<pre class="r"><code>head(Boston)</code></pre>
+<pre><code>##      crim zn indus chas   nox    rm  age    dis rad tax ptratio lstat medv
+## 1 0.00632 18  2.31    0 0.538 6.575 65.2 4.0900   1 296    15.3  4.98 24.0
+## 2 0.02731  0  7.07    0 0.469 6.421 78.9 4.9671   2 242    17.8  9.14 21.6
+## 3 0.02729  0  7.07    0 0.469 7.185 61.1 4.9671   2 242    17.8  4.03 34.7
+## 4 0.03237  0  2.18    0 0.458 6.998 45.8 6.0622   3 222    18.7  2.94 33.4
+## 5 0.06905  0  2.18    0 0.458 7.147 54.2 6.0622   3 222    18.7  5.33 36.2
+## 6 0.02985  0  2.18    0 0.458 6.430 58.7 6.0622   3 222    18.7  5.21 28.7</code></pre>
+<pre class="r"><code>#str(Boston)
+summary(Boston)</code></pre>
+<pre><code>##       crim                zn             indus            chas        
+##  Min.   : 0.00632   Min.   :  0.00   Min.   : 0.46   Min.   :0.00000  
+##  1st Qu.: 0.08205   1st Qu.:  0.00   1st Qu.: 5.19   1st Qu.:0.00000  
+##  Median : 0.25651   Median :  0.00   Median : 9.69   Median :0.00000  
+##  Mean   : 3.61352   Mean   : 11.36   Mean   :11.14   Mean   :0.06917  
+##  3rd Qu.: 3.67708   3rd Qu.: 12.50   3rd Qu.:18.10   3rd Qu.:0.00000  
+##  Max.   :88.97620   Max.   :100.00   Max.   :27.74   Max.   :1.00000  
+##       nox               rm             age              dis        
+##  Min.   :0.3850   Min.   :3.561   Min.   :  2.90   Min.   : 1.130  
+##  1st Qu.:0.4490   1st Qu.:5.886   1st Qu.: 45.02   1st Qu.: 2.100  
+##  Median :0.5380   Median :6.208   Median : 77.50   Median : 3.207  
+##  Mean   :0.5547   Mean   :6.285   Mean   : 68.57   Mean   : 3.795  
+##  3rd Qu.:0.6240   3rd Qu.:6.623   3rd Qu.: 94.08   3rd Qu.: 5.188  
+##  Max.   :0.8710   Max.   :8.780   Max.   :100.00   Max.   :12.127  
+##       rad              tax           ptratio          lstat      
+##  Min.   : 1.000   Min.   :187.0   Min.   :12.60   Min.   : 1.73  
+##  1st Qu.: 4.000   1st Qu.:279.0   1st Qu.:17.40   1st Qu.: 6.95  
+##  Median : 5.000   Median :330.0   Median :19.05   Median :11.36  
+##  Mean   : 9.549   Mean   :408.2   Mean   :18.46   Mean   :12.65  
+##  3rd Qu.:24.000   3rd Qu.:666.0   3rd Qu.:20.20   3rd Qu.:16.95  
+##  Max.   :24.000   Max.   :711.0   Max.   :22.00   Max.   :37.97  
+##       medv      
+##  Min.   : 5.00  
+##  1st Qu.:17.02  
+##  Median :21.20  
+##  Mean   :22.53  
+##  3rd Qu.:25.00  
+##  Max.   :50.00</code></pre>
+</div>
+<div id="fit-simple-linear-regression" class="section level2">
+<h2>Fit Simple Linear Regression</h2>
+<ul>
+<li><p>Boston Data Set: Housing values in 506s suburbs of Boston.</p></li>
+<li><p>medv: median value of owner-occupied homes in $1000.
+(response, y)</p></li>
+<li><p>lstat: lower status of the population(percent).
+(predictor, x)</p></li>
+</ul>
+<p>hypothesis: the larger lstat is associated with lower medv.</p>
+<pre class="r"><code>lm.fit &lt;- lm(medv ~ lstat, data = Boston)
+names(lm.fit)</code></pre>
+<pre><code>##  [1] &quot;coefficients&quot;  &quot;residuals&quot;     &quot;effects&quot;       &quot;rank&quot;         
+##  [5] &quot;fitted.values&quot; &quot;assign&quot;        &quot;qr&quot;            &quot;df.residual&quot;  
+##  [9] &quot;xlevels&quot;       &quot;call&quot;          &quot;terms&quot;         &quot;model&quot;</code></pre>
+<pre class="r"><code>summary(lm.fit)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = medv ~ lstat, data = Boston)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -15.168  -3.990  -1.318   2.034  24.500 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 34.55384    0.56263   61.41   &lt;2e-16 ***
+## lstat       -0.95005    0.03873  -24.53   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 6.216 on 504 degrees of freedom
+## Multiple R-squared:  0.5441, Adjusted R-squared:  0.5432 
+## F-statistic: 601.6 on 1 and 504 DF,  p-value: &lt; 2.2e-16</code></pre>
+<div id="explanation" class="section level3">
+<h3>Explanation:</h3>
+<p>One percent increase in lower status of population is associated with an $950 increase in median value of owner-occupied homes.
+The p-value for the predictor is close to zero indicates that the relationship between predictor and response is hardly due to chance.
+In most case, we say that p-value <code>$\le \alpha$</code>, where <code>$\alpha$</code> is the significant level usually 0.05, then the event is significant.
+(*significant level: the probability that the event occurs by chance)</p>
+<p>In terms of the model accuracy, we looks at the following index:</p>
+<ul>
+<li><p>RSE= <code>$\sqrt{\frac{RSS}{n}}$</code>, the average deviation of prediction and observation.It measures the lack of fit of the model.
+In this case is around 6.216, and the unit is $1000.
+The average deviation is around $6216 for response.
+The mean for the sample response is $22530.</p></li>
+<li><p><code>$R^2$</code> = <code>$\frac{TSS-RSS}{TSS}$</code> which measures the proportion of variance in respsonse that can be explained by the predictors.
+And it’s always <code>$0\le R^2\le1$</code>.
+In this case, 0.5441, which is a little surpass the 0.5.</p></li>
+<li><p>F statistics = <code>$\frac{\frac{TSS-RSS}{p}}{\frac{RSS}{n-p-1}}$</code> with p-value gives you an idea on whether you should reject hypothesis test.
+In this case, p-value suggested reject H0, and the event is significant.</p></li>
+</ul>
+<pre class="r"><code>plot(x = Boston$lstat, y = Boston$medv, pch = 8, col = &quot;blue&quot;)
+abline(lm.fit, col = &quot;red&quot;, lwd = 3)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<pre class="r"><code># plot(1:20, 1:20, pch = 1:20) -&gt; show the 20 different plotting symbols</code></pre>
+<pre class="r"><code># Diagnostics plot 
+par(mfrow = c(2, 2))
+plot(lm.fit)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<pre class="r"><code># Manually plot the left two plots above
+plot(predict(lm.fit), residuals(lm.fit))</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<pre class="r"><code>plot(predict(lm.fit), rstudent(lm.fit)) </code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-4-2.png" width="672" /></p>
+</div>
+<div id="multiple-linear-regression" class="section level3">
+<h3>Multiple Linear Regression:</h3>
+<pre class="r"><code>lm.fit2 &lt;- lm(medv ~ lstat +age, data = Boston )
+summary(lm.fit2)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = medv ~ lstat + age, data = Boston)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -15.981  -3.978  -1.283   1.968  23.158 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 33.22276    0.73085  45.458  &lt; 2e-16 ***
+## lstat       -1.03207    0.04819 -21.416  &lt; 2e-16 ***
+## age          0.03454    0.01223   2.826  0.00491 ** 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 6.173 on 503 degrees of freedom
+## Multiple R-squared:  0.5513, Adjusted R-squared:  0.5495 
+## F-statistic:   309 on 2 and 503 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>one percent increase in the proportion of aged owner-occupied house while the proportion of lower status held fixed leads to $34 dollars increase in median value of owner-occupied house.
+one percent increase in the proportion of lower status of population while the proportion of aged house held fix associated with $1032 dollars decrease in the median price.</p>
+<pre class="r"><code>lm.fit3&lt;- lm(medv ~ age, Boston)
+summary(lm.fit3)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = medv ~ age, data = Boston)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -15.097  -5.138  -1.958   2.397  31.338 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 30.97868    0.99911  31.006   &lt;2e-16 ***
+## age         -0.12316    0.01348  -9.137   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 8.527 on 504 degrees of freedom
+## Multiple R-squared:  0.1421, Adjusted R-squared:  0.1404 
+## F-statistic: 83.48 on 1 and 504 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre class="r"><code>par(mfrow = c(2,2))
+plot(lm.fit3)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>one percent increase in age proportion associated with $1231 decrease in median value.</p>
+<p>It has significant result meaning that the association between age and median value exist yet it has a low R-squared meaning that the regression does not explain much of proportion of variance in response.
+To investigate this problem, we look at the fitted plot, and we can see that the variability around the regression line is pretty high.
+This situation does not means that the model is bad, but low R-squared values are problematic when you need precise predictions.
+<span class="math display">\[1\]</span></p>
+<pre class="r"><code>plot(Boston$age, Boston$medv)
+abline(lm.fit3, col = &#39;red&#39;, lwd = 3)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<pre class="r"><code>boxplot(Boston$age)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-7-2.png" width="672" /></p>
+<pre class="r"><code>boxplot.stats(Boston$age)</code></pre>
+<pre><code>## $stats
+## [1]   2.9  45.0  77.5  94.1 100.0
+## 
+## $n
+## [1] 506
+## 
+## $conf
+## [1] 74.05124 80.94876
+## 
+## $out
+## numeric(0)</code></pre>
+<pre class="r"><code>cor(Boston$age, Boston$medv)</code></pre>
+<pre><code>## [1] -0.3769546</code></pre>
+<div id="references" class="section level5">
+<h5>References</h5>
+<ul>
+<li>Low R^2 with significant model <a href="https://blog.minitab.com/en/adventures-in-statistics-2/how-to-interpret-a-regression-model-with-low-r-squared-and-low-p-values">1</a></li>
+</ul>
+</div>
+</div>
+</div>

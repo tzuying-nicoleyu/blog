@@ -1,0 +1,120 @@
+---
+title: Regression (simple and multiple)
+author: Tzuying Yu
+date: '2023-11-02'
+categories:
+  - statistics
+slug: test
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## The data
+
+```{r load libraries}
+library(MASS)
+library(ISLR2)
+
+head(Boston)
+#str(Boston)
+summary(Boston)
+```
+
+## Fit Simple Linear Regression
+
+-   Boston Data Set: Housing values in 506s suburbs of Boston.
+
+-   medv: median value of owner-occupied homes in \$1000.
+    (response, y)
+
+-   lstat: lower status of the population(percent).
+    (predictor, x)
+
+hypothesis: the larger lstat is associated with lower medv.
+
+```{r}
+lm.fit <- lm(medv ~ lstat, data = Boston)
+names(lm.fit)
+summary(lm.fit)
+```
+
+### Explanation:
+
+One percent increase in lower status of population is associated with an \$950 increase in median value of owner-occupied homes.
+The p-value for the predictor is close to zero indicates that the relationship between predictor and response is hardly due to chance.
+In most case, we say that p-value `$\le \alpha$`, where `$\alpha$` is the significant level usually 0.05, then the event is significant.
+(\*significant level: the probability that the event occurs by chance)
+
+In terms of the model accuracy, we looks at the following index:
+
+-   RSE= `$\sqrt{\frac{RSS}{n}}$`, the average deviation of prediction and observation.It measures the lack of fit of the model.
+    In this case is around 6.216, and the unit is \$1000.
+    The average deviation is around \$6216 for response.
+    The mean for the sample response is \$22530.
+
+-   `$R^2$` = `$\frac{TSS-RSS}{TSS}$` which measures the proportion of variance in respsonse that can be explained by the predictors.
+    And it's always `$0\le R^2\le1$`.
+    In this case, 0.5441, which is a little surpass the 0.5.
+
+-   F statistics = `$\frac{\frac{TSS-RSS}{p}}{\frac{RSS}{n-p-1}}$` with p-value gives you an idea on whether you should reject hypothesis test.
+    In this case, p-value suggested reject H0, and the event is significant.
+
+```{r}
+
+plot(x = Boston$lstat, y = Boston$medv, pch = 8, col = "blue")
+abline(lm.fit, col = "red", lwd = 3)
+# plot(1:20, 1:20, pch = 1:20) -> show the 20 different plotting symbols
+```
+
+```{r}
+# Diagnostics plot 
+par(mfrow = c(2, 2))
+plot(lm.fit)
+```
+
+```{r}
+# Manually plot the left two plots above
+plot(predict(lm.fit), residuals(lm.fit))
+plot(predict(lm.fit), rstudent(lm.fit)) 
+```
+
+### Multiple Linear Regression:
+
+```{r}
+lm.fit2 <- lm(medv ~ lstat +age, data = Boston )
+summary(lm.fit2)
+```
+
+one percent increase in the proportion of aged owner-occupied house while the proportion of lower status held fixed leads to \$34 dollars increase in median value of owner-occupied house.
+one percent increase in the proportion of lower status of population while the proportion of aged house held fix associated with \$1032 dollars decrease in the median price.
+
+```{r}
+lm.fit3<- lm(medv ~ age, Boston)
+summary(lm.fit3)
+par(mfrow = c(2,2))
+plot(lm.fit3)
+```
+
+one percent increase in age proportion associated with \$1231 decrease in median value.
+
+It has significant result meaning that the association between age and median value exist yet it has a low R-squared meaning that the regression does not explain much of proportion of variance in response.
+To investigate this problem, we look at the fitted plot, and we can see that the variability around the regression line is pretty high.
+This situation does not means that the model is bad, but low R-squared values are problematic when you need precise predictions.
+\[1\]
+
+
+
+```{r}
+plot(Boston$age, Boston$medv)
+abline(lm.fit3, col = 'red', lwd = 3)
+boxplot(Boston$age)
+boxplot.stats(Boston$age)
+cor(Boston$age, Boston$medv)
+```
+
+##### References
+
+-   Low R^2 with significant model [1](https://blog.minitab.com/en/adventures-in-statistics-2/how-to-interpret-a-regression-model-with-low-r-squared-and-low-p-values)

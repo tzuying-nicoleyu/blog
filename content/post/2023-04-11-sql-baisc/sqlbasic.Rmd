@@ -2,16 +2,16 @@
 title: SQL Baisc
 author: Tzuying Yu
 date: '2023-04-11'
-slug: sql-baisc
-categories: []
+categories:
+  - SQL
 tags:
   - SQL
+slug: sql-baisc
 ---
 
 ### Some vocabulary:
 
--   Normalization:
-It's the process of maintaining as less data as possible in a database. Benefit of doing so include saving space and easy tracking data.
+-   Normalization: It's the process of maintaining as less data as possible in a database. Benefit of doing so include saving space and easy tracking data.
 -   Columns are called fields
 -   Rows are called records
 -   Primary Keys: They are the minimum numbers of columns to uniquely identify a row.
@@ -24,7 +24,7 @@ Database Name: KCC Four table Name: dbo.Orders, dbo.Customers, dbo.Order_Product
 
 ### Select
 
-1. Select OrderID and CustomerID in Orders table, and rename CustomerID as Customer ID.
+1.  Select OrderID and CustomerID in Orders table, and rename CustomerID as Customer ID.
 
 ``` sql
 Select OrderID, CustomerID as [Customer ID] from KCC.dbo.Orders
@@ -113,19 +113,19 @@ Inner Join  KCC.dbo.Customers c  on o.CustomerID = c.CustomerID
 
 It is when you want to return a table with sorted values with your targeted columns.
 
-```         
+``` sql
 SELECT OrderID, OrderDate, OrderTotal, CustomerName, Phone 
 From dbo.Orders o
 Right outer Join dbo.Customers c on o.CustomerID = c.CustomerID
 Order by  OrderTotal desc
--- where desc is descending 
+## where desc is descending 
 ```
 
 ### Functions
 
 1.  Dateadd(interval, increment, expression) In the exmaple below, Dateadd(MONTh, -1, getdate()) means the date set is one month before than now.
 
-2.  Count(*) This counts number of rows
+2.  Count(\*) This counts number of rows
 
 3.  Sum(OrderTotal) Return sum of the OrderTotal's value
 
@@ -138,16 +138,8 @@ select sum(OrderTotal) from dbo.Orders
 select * from dbo.Orders group by CustomerID
 ```
 
-##### Reference 
+##### Reference
 
-1. The Youtube video I reference on
-[SQL for Beginner by Kevin Stratvert](https://www.youtube.com/watch?v=h0nxCDiD-zg)
+1.  The Youtube video I reference on [SQL for Beginner by Kevin Stratvert](https://www.youtube.com/watch?v=h0nxCDiD-zg)
 
-2. The database KCC I used in the example
-[KCC database download link to follow along](https://onedrive.live.com/?authkey=%21AGGtzPTtFEqtVoU&id=B09F9559F6A16B6C%2177197&cid=B09F9559F6A16B6C&parId=root&parQt=sharedby&parCid=B5D0CE9C428470B4&o=OneUp)
-
-\
-\
-\
-
-
+2.  The database KCC I used in the example [KCC database download link to follow along](https://onedrive.live.com/?authkey=%21AGGtzPTtFEqtVoU&id=B09F9559F6A16B6C%2177197&cid=B09F9559F6A16B6C&parId=root&parQt=sharedby&parCid=B5D0CE9C428470B4&o=OneUp)

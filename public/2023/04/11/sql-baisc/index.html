@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.75.1" />
+
+
+<title>SQL Baisc - A Hugo website</title>
+<meta property="og:title" content="SQL Baisc - A Hugo website">
+
+
+  <link href='/favicon.ico' rel='icon' type='image/x-icon'/>
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.png"
+         width="50"
+         height="50"
+         alt="Logo">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="https://github.com/tzuying-nicoleyu">GitHub</a></li>
+    
+    <li><a href="www.linkedin.com/in/tzu-ying-yu-nicole0817/">LinkedIn</a></li>
+    
+    <li><a href="/about/">Resume</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">3 min read</span>
+    
+
+    <h1 class="article-title">SQL Baisc</h1>
+
+    
+    <span class="article-date">2023-04-11</span>
+    
+
+    <div class="article-content">
+      
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<div id="some-vocabulary" class="section level3">
+<h3>Some vocabulary:</h3>
+<ul>
+<li>Normalization:
+It’s the process of maintaining as less data as possible in a database. Benefit of doing so include saving space and easy tracking data.</li>
+<li>Columns are called fields</li>
+<li>Rows are called records</li>
+<li>Primary Keys: They are the minimum numbers of columns to uniquely identify a row.</li>
+</ul>
+</div>
+<div id="example-database-diagram" class="section level3">
+<h3>Example Database Diagram</h3>
+<p>Database Name: KCC Four table Name: dbo.Orders, dbo.Customers, dbo.Order_Product, dbo.Product</p>
+<div class="figure">
+<img src="databse_diagram.png" alt="" />
+<p class="caption">Figure 1: Example Database diagram</p>
+</div>
+</div>
+<div id="select" class="section level3">
+<h3>Select</h3>
+<ol style="list-style-type: decimal">
+<li>Select OrderID and CustomerID in Orders table, and rename CustomerID as Customer ID.</li>
+</ol>
+<pre class="sql"><code>Select OrderID, CustomerID as [Customer ID] from KCC.dbo.Orders</code></pre>
+<p>2.Select all columns in Orders table</p>
+<pre class="sql"><code>Select * from KCC.dbo.Orders</code></pre>
+<p>3.Display every customer Name in Customers table</p>
+<pre class="sql"><code>Select distinct CustomerName from KCC.dbo.Customers</code></pre>
+<p>4,.Select top 5 recods from Customers table</p>
+<pre class="sql"><code>Select top(5) * from KCC.dbo.Customers</code></pre>
+</div>
+<div id="filter-giving-some-conditions" class="section level3">
+<h3>Filter (Giving some conditions)</h3>
+<p>1.Single conditions: Select customers records only customers lived in Washington from Cutomers table</p>
+<pre class="sql"><code>Select *
+From KCC.dbo.Customers
+where State = &quot;WA&quot;</code></pre>
+<p>*Notes: equal sign is ‘=’, unequal sign ‘!=’ in sql.</p>
+<p>2.Multiple conditions:</p>
+<ul>
+<li>Select customers’ records only customers lived in Washington, New York, and Uta from Cutomers table</li>
+<li>Select customers’ records only customers whose name is ‘Tres Delicious’ and live in either france or united states</li>
+</ul>
+<pre class="sql"><code>Select *
+From KCC.dbo.Customers
+where State IN(&#39;WA&#39;, &#39;NY&#39;, &#39;UT&#39;)
+
+Select *
+From KCC.dbo.Customers
+where CustomerName = &#39;Tres Delicous&#39; and (Country = &#39;France&#39; or Country = &#39;United States&#39;)</code></pre>
+<p>3.Select customers’ records only customers’ name start with A</p>
+<pre class="sql"><code>Select *
+From KCC.dbo.Customers
+where CustomerName Like &#39;%A&#39;</code></pre>
+<p>4.Select customers’ records only customers’ name doesn’t start with A</p>
+<pre class="sql"><code>Select *
+From KCC.dbo.Customers
+where CustomerName Not Like &#39;%A&#39;</code></pre>
+</div>
+<div id="join" class="section level3">
+<h3>Join</h3>
+<p>1.(Inner)Join: only row that exists in both table 1 and 2 will be returned.</p>
+<pre class="sql"><code>Select OrderID, OrderDate, OrderTotal, CustomerName, Phone
+From KCC.dbo.Orders o
+Inner Join  KCC.dbo.Customers c  on o.CustomerID = c.CustomerID</code></pre>
+<p>2.LEFT (OUTER) JOIN: Returns all records from the left table, and the matched records from the right table</p>
+<p>3.RIGHT (OUTER) JOIN: Returns all records from the right table, and the matched records from the left table (In my example, might return a row in which customers without orders)</p>
+<p>4.FULL (OUTER) JOIN: Returns all records when there is a match in either left or right table</p>
+<div class="figure">
+<img src="join_figure.png" alt="" />
+<p class="caption">Figure 2:Join visualization</p>
+</div>
+</div>
+<div id="order-by" class="section level3">
+<h3>Order by</h3>
+<p>It is when you want to return a table with sorted values with your targeted columns.</p>
+<pre><code>SELECT OrderID, OrderDate, OrderTotal, CustomerName, Phone 
+From dbo.Orders o
+Right outer Join dbo.Customers c on o.CustomerID = c.CustomerID
+Order by  OrderTotal desc
+-- where desc is descending </code></pre>
+</div>
+<div id="functions" class="section level3">
+<h3>Functions</h3>
+<ol style="list-style-type: decimal">
+<li><p>Dateadd(interval, increment, expression) In the exmaple below, Dateadd(MONTh, -1, getdate()) means the date set is one month before than now.</p></li>
+<li><p>Count(*) This counts number of rows</p></li>
+<li><p>Sum(OrderTotal) Return sum of the OrderTotal’s value</p></li>
+<li><p>Group by Return selected columns with group based on targeted columns</p></li>
+</ol>
+<pre class="sql"><code>select * from dbo.Orders where OrderDate &gt;= Dateadd(MONTH, -1, getdate())
+select count(*) from dbo.Orders
+select sum(OrderTotal) from dbo.Orders
+select * from dbo.Orders group by CustomerID</code></pre>
+<div id="reference" class="section level5">
+<h5>Reference</h5>
+<ol style="list-style-type: decimal">
+<li><p>The Youtube video I reference on
+<a href="https://www.youtube.com/watch?v=h0nxCDiD-zg">SQL for Beginner by Kevin Stratvert</a></p></li>
+<li><p>The database KCC I used in the example
+<a href="https://onedrive.live.com/?authkey=%21AGGtzPTtFEqtVoU&amp;id=B09F9559F6A16B6C%2177197&amp;cid=B09F9559F6A16B6C&amp;parId=root&amp;parQt=sharedby&amp;parCid=B5D0CE9C428470B4&amp;o=OneUp">KCC database download link to follow along</a></p></li>
+</ol>
+<p><br />
+<br />
+<br />
+</p>
+</div>
+</div>
+
+    </div>
+  </article>
+
+  
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="/index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://gohugo.io/" class="footer-links-kudos">Made with <img src="/images/hugo-logo.png" alt="Img link to Hugo website" width="22" height="22"></a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/r.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+
+    
+  </body>
+</html>
+

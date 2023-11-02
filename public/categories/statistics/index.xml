@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>statistics on A Hugo website</title>
+    <link>/categories/statistics/</link>
+    <description>Recent content in statistics on A Hugo website</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 02 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="/categories/statistics/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Regression (simple and multiple)</title>
+      <link>/2023/11/02/test/</link>
+      <pubDate>Thu, 02 Nov 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/2023/11/02/test/</guid>
+      <description>The data library(MASS) library(ISLR2) ## ## Attaching package: &amp;#39;ISLR2&amp;#39; ## The following object is masked from &amp;#39;package:MASS&amp;#39;: ## ## Boston head(Boston) ## crim zn indus chas nox rm age dis rad tax ptratio lstat medv ## 1 0.00632 18 2.31 0 0.538 6.575 65.2 4.0900 1 296 15.3 4.98 24.0 ## 2 0.02731 0 7.07 0 0.469 6.421 78.9 4.9671 2 242 17.8 9.14 21.6 ## 3 0.02729 0 7.</description>
+    </item>
+    
+  </channel>
+</rss>
